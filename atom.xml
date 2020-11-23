@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://henuhub.com/"/>
-  <updated>2020-11-23T09:36:44.086Z</updated>
+  <updated>2020-11-23T11:55:57.450Z</updated>
   <id>http://henuhub.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Unicorn shop+Web1</title>
+    <title>Unicorn shop+Web1+easy_serialize_php</title>
     <link href="http://henuhub.com/2020/11/22/article1/"/>
     <id>http://henuhub.com/2020/11/22/article1/</id>
     <published>2020-11-22T14:58:08.000Z</published>
-    <updated>2020-11-23T09:36:44.086Z</updated>
+    <updated>2020-11-23T11:55:57.450Z</updated>
     
     <summary type="html">
     
@@ -35,6 +35,8 @@
     
     </summary>
     
+    
+      <category term="CTF" scheme="http://henuhub.com/categories/CTF/"/>
     
     
       <category term="BUUCTF" scheme="http://henuhub.com/tags/BUUCTF/"/>
