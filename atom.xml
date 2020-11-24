@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://henuhub.com/"/>
-  <updated>2020-11-23T11:55:57.450Z</updated>
+  <updated>2020-11-24T13:10:46.954Z</updated>
   <id>http://henuhub.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>easy_web</title>
+    <link href="http://henuhub.com/2020/11/24/article2/"/>
+    <id>http://henuhub.com/2020/11/24/article2/</id>
+    <published>2020-11-24T11:05:13.000Z</published>
+    <updated>2020-11-24T13:10:46.954Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;easy-web&quot;&gt;&lt;a href=&quot;#easy-web&quot; class=&quot;headerlink&quot; title=&quot;easy_web&quot;&gt;&lt;/a&gt;easy_web&lt;/h1&gt;&lt;h2 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://henuhub.com/categories/CTF/"/>
+    
+    
+      <category term="BUUCTF" scheme="http://henuhub.com/tags/BUUCTF/"/>
+    
+  </entry>
   
   <entry>
     <title>Unicorn shop+Web1+easy_serialize_php</title>
