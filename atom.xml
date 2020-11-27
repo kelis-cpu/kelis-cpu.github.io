@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://henuhub.com/"/>
-  <updated>2020-11-24T13:10:46.954Z</updated>
+  <updated>2020-11-27T04:40:42.651Z</updated>
   <id>http://henuhub.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>朴实无华</title>
+    <link href="http://henuhub.com/2020/11/26/article3/"/>
+    <id>http://henuhub.com/2020/11/26/article3/</id>
+    <published>2020-11-27T01:23:39.000Z</published>
+    <updated>2020-11-27T04:40:42.651Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;朴实无华&quot;&gt;&lt;a href=&quot;#朴实无华&quot; class=&quot;headerlink&quot; title=&quot;朴实无华&quot;&gt;&lt;/a&gt;朴实无华&lt;/h1&gt;&lt;h2 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://henuhub.com/categories/CTF/"/>
+    
+    
+      <category term="BUUCTF" scheme="http://henuhub.com/tags/BUUCTF/"/>
+    
+  </entry>
   
   <entry>
     <title>easy_web</title>
