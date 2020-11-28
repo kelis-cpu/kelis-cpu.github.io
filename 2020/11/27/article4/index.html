@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="朴实无华, null">
+    <meta name="keywords" content="php伪协议与文件包含, null">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>朴实无华 | null</title>
+    <title>php伪协议与文件包含 | null</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -287,12 +287,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">朴实无华</h1>
+                    <h1 class="description center-align post-title">php伪协议与文件包含</h1>
                 </div>
             </div>
         </div>
@@ -314,8 +314,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/BUUCTF/">
-                                <span class="chip bg-color">BUUCTF</span>
+                            <a href="/tags/php/">
+                                <span class="chip bg-color">php</span>
                             </a>
                         
                     </div>
@@ -326,8 +326,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/CTF/" class="post-category">
-                                CTF
+                            <a href="/categories/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" class="post-category">
+                                php伪协议
                             </a>
                         
                     </div>
@@ -339,21 +339,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-11-26
+                    2020-11-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-11-26
+                    2020-11-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.4k
+                    1.1k
                 </div>
                 
 
@@ -375,89 +375,78 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="朴实无华"><a href="#朴实无华" class="headerlink" title="朴实无华"></a>朴实无华</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><strong>1.代码审计</strong></p>
-<p><strong>2.弱类型转换</strong></p>
-<p><strong>3.命令执行及常见绕过方式</strong></p>
-<h2 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h2><p>打开题目页面说无法确认更多头部信息，直接F12查看一下头部信息，未发现有价值的东西，</p>
-<p><img src="/../images/2020-11-26_20-33.png" alt=""></p>
-<p>然后先扫描一下该网站，扫描什么也没有发现，再来看看<code>robots.txt</code>，发现一个<code>fake flag</code>，查看它，flag是假，但是请求头里面有提示了，</p>
-<p><img src="/../images/2020-11-26_20-40.png" alt=""></p>
-<p>再来查看这个，果然代码审计了（因为这个页面没有指明<code>charset</code>，所以是乱码，我使用的是火狐浏览器，可以直接点击右上角三横杠–》更多–》文字编码–》Unicode即可;或者也可以直接在开发者工具里面查看）</p>
-<p><img src="" alt="">)<img src="/../images/2020-11-26_20-41.png" alt="2020-11-26_20-41"></p>
-<pre class=" language-php"><code class="language-php"><span class="token comment" spellcheck="true">//level 1</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'num'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token variable">$num</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'num'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">intval</span><span class="token punctuation">(</span><span class="token variable">$num</span><span class="token punctuation">)</span> <span class="token markup">&lt; 2020 &amp;&amp; intval($num + 1) ></span> <span class="token number">2021</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">echo</span> <span class="token string">"我不经意间看了看我的劳力士, 不是想看时间, 只是想不经意间, 让你知道我过得比你好.&lt;/br>"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string">"金钱解决不了穷人的本质问题"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string">"去非洲吧"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//level 2</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'md5'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-   <span class="token variable">$md5</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'md5'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$md5</span><span class="token operator">==</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$md5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-       <span class="token keyword">echo</span> <span class="token string">"想到这个CTFer拿到flag后, 感激涕零, 跑去东澜岸, 找一家餐厅, 把厨师轰出去, 自己炒两个拿手小菜, 倒一杯散装白酒, 致富有道, 别学小暴.&lt;/br>"</span><span class="token punctuation">;</span>
-   <span class="token keyword">else</span>
-       <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string">"我赶紧喊来我的酒肉朋友, 他打了个电话, 把他一家安排到了非洲"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string">"去非洲吧"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//get flag</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'get_flag'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token variable">$get_flag</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'get_flag'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token variable">$get_flag</span><span class="token punctuation">,</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token variable">$get_flag</span> <span class="token operator">=</span> <span class="token function">str_ireplace</span><span class="token punctuation">(</span><span class="token string">"cat"</span><span class="token punctuation">,</span> <span class="token string">"wctf2020"</span><span class="token punctuation">,</span> <span class="token variable">$get_flag</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">echo</span> <span class="token string">"想到这里, 我充实而欣慰, 有钱人的快乐往往就是这么的朴实无华, 且枯燥.&lt;/br>"</span><span class="token punctuation">;</span>
-        <span class="token function">system</span><span class="token punctuation">(</span><span class="token variable">$get_flag</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string">"快到非洲了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string">"去非洲吧"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token delimiter">?></span> </code></pre>
-<h3 id="level-1"><a href="#level-1" class="headerlink" title="level 1"></a>level 1</h3><p>绕过<code>if</code>语句就能过了<code>level 1</code>，去菜鸟教程看了看<code>intval</code>函数的使用说明，重点来了</p>
-<p><img src="/../images/2020-11-26_20-48.png" alt=""></p>
-<p><img src="/../images/2020-11-26_20-49.png" alt=""></p>
-<p>然后再来看<code>php</code>类型转换</p>
-<p><img src="/../images/2020-11-26_20-52.png" alt=""></p>
-<p>结合上述两个示例，就可以绕过第一关了，<code>num=1e10</code></p>
-<h2 id="level-2"><a href="#level-2" class="headerlink" title="level 2"></a>level 2</h2><p>也是绕过<code>if</code>语句就能过了<code>level 2</code>，<code>$md5==md5($md5)</code>,<code>php</code>弱类型比较</p>
-<h3 id="php手册"><a href="#php手册" class="headerlink" title="php手册"></a>php手册</h3><p><strong>1.</strong> <strong>如果比较一个数字和字符串或者比较涉及到数字内容的字符串，则字符串会被转化为数值来进行比较。当用===或！==进行比较时则不进行类型转换，此时类型和数值都要进行对比</strong></p>
-<p><strong>2.类型转换的判别</strong></p>
-<p>PHP在变量定义中不需要明确类型定义变量类型是根据使用该变量的上下文所决定的。</p>
-<p>自动类型转换的例子就是乘法运算符<code>*</code>,如果任何一个操作数是<code>float</code>,则所有操作数都被当成<code>float</code>，结果也是<code>float</code>，否则操作数就被解释为<code>integer</code>。</p>
-<p><strong>3.字符串转换为数值</strong></p>
-<p>当一个字符串被当作一个数值来取值，其结果和类型如下：</p>
-<p>   如果该字符串没有包含 ‘.’，’e’ 或 ‘E’   并且其数字值在整型的范围之内（由 <strong><code>PHP_INT_MAX</code></strong>   所定义），该字符串将被当成 integer   来取值。其它所有情况下都被作为 float 来取值。  </p>
-<p>   该字符串的开始部分决定了它的值。如果该字符串以合法的数值开始，则使用该数值。否则其值为   0（零）。合法数值由可选的正负号，后面跟着一个或多个数字（可能有小数点），再跟着可选的指数部分。指数部分由   ‘e’ 或 ‘E’ 后面跟着一个或多个数字构成。  </p>
-<p>注：php如何将科学计数法转数字：首先通过<code>if</code>语句判断指定的数值是否为科学计数法然后提取科学计数法中有效数据接着正式处理该数据最后调用<code>convert_scientific_number_to_normal</code>方法实现转换。</p>
-<p>结合上述三点，可以知道如果找到一个<code>md5哈希</code>前后开头都是<code>0e</code>且哈希前后字符开头<code>0e</code>后面都是纯数字的字符串就可以绕过<code>level 2</code></p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> hashlib
-s<span class="token operator">=</span><span class="token string">"0e"</span>
-<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10</span><span class="token operator">**</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    s<span class="token operator">=</span><span class="token string">"0e"</span>
-    s<span class="token operator">+=</span>str<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-    m<span class="token operator">=</span>hashlib<span class="token punctuation">.</span>md5<span class="token punctuation">(</span>s<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> m<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">"0e"</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> m<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>isdigit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-            <span class="token keyword">break</span></code></pre>
-<p>脚本运行完得到，<code>md5=0e215962017</code></p>
-<h2 id="get-flag"><a href="#get-flag" class="headerlink" title="get_flag"></a>get_flag</h2><p>最后一关，看到了<code>system（）</code>,应该是通过命令执行<code>cat，tac</code>等拿到<code>flag</code>，想要进行命令执行，<code>get_flag</code>参数需要先满足前面两个<code>if</code>条件，不能含有空格，不能使用<code>cat</code>,因为会被替换成<code>wctf2020</code></p>
-<p>1.绕过对<code>cat</code>的过滤，上一篇文章里面有，可以采用<code>tac，sort，ca\t</code>等命令</p>
-<p>2.bash环境绕过空格</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>  -- 重定向，如cat<span class="token operator">&lt;</span>flag.php
-<span class="token operator">&lt;</span><span class="token operator">></span>  --重定向
-<span class="token variable">${IFS}</span> 
-<span class="token variable">$IFS</span><span class="token variable">$9</span>
-<span class="token variable">${IFS}</span>,<span class="token variable">$IFS</span>,<span class="token variable">$IFS</span><span class="token variable">$9</span>的区别，首先<span class="token variable">$IFS</span>在linux下表示分隔符，单纯的cat<span class="token variable">$IFS2</span>,bash解释器会把整个IFS2当做变量名，所以导致输不出来结果，然而如果加一个<span class="token punctuation">{</span><span class="token punctuation">}</span>就固定了变量名，同理在后面加个$可以起到截断的作用，但是为什么要用<span class="token variable">$9</span>呢，因为<span class="token variable">$9</span>只是当前系统shell进程的第九个参数的持有者，它始终为空字符串</code></pre>
-<p>先<code>ls</code>看看有哪些文件，</p>
-<p><img src="/../images/2020-11-26_23-37.png" alt=""></p>
-<p>应该在最长那一段文件里，直接<code>tac$IFS$9flllllllllllllaaaaaaaaaaaaaaaaaag</code>,拿到<code>flag</code></p>
+                <h1 id="与文件包含相关函数"><a href="#与文件包含相关函数" class="headerlink" title="与文件包含相关函数"></a>与文件包含相关函数</h1><p><code>1.include</code></p>
+<p>以下说明也适用于<code>require</code></p>
+<p>该包含文件先按照参数给出的路径寻找，如果没有给出目录(只有文件名时)则按照<code>include_path</code>指定的目录寻找。如果在<code>include_path</code>下没找到该文件则<code>include</code>最后才在调用脚本文件所在的目录和当前工作目录下寻找。如果未找到文件则<code>include</code>结构会发出一条警告。</p>
+<p>如果定义了路径–不管是绝对路径(在windows下以盘符或者/开头，在Unix或者Linux下以/开头)还是当前目录的相对路径(.或..开头)–<code>include_path</code>都会被完全忽略。</p>
+<p><code>2.require</code></p>
+<p><code>require</code>和<code>include</code>几乎完全一样，除了处理失败的方式不同之外。<code>require</code>在出错时会终止脚本运行，而<code>include</code>只产生警告，脚本会继续执行。</p>
+<p><code>3.require_once/include_once</code></p>
+<p>如果该文件已经被包含过，则不会再次包含。</p>
+<p>4.其他能够利用伪协议的函数进行文件读取</p>
+<p><code>highlight_file,show_source,readfile,fopen,file,file_get_contents</code></p>
+<h2 id="远程文件包含的产生"><a href="#远程文件包含的产生" class="headerlink" title="远程文件包含的产生"></a>远程文件包含的产生</h2><p><strong>如果<code>URL include wrappers</code>在PHP中被激活，可以用URL(通过HTTP或其他支持的协议和封装协议)而不是本地文件来指定要被包含的文件。</strong></p>
+<p>1.<code>URL include wrappers</code></p>
+<p><code>php.ini</code>中的<code>allow_url_fopen及allow_url_include</code>等配置是否开启。</p>
+<p>2.<code>部分支持的协议和封装协议</code></p>
+<pre class=" language-php"><code class="language-php">file<span class="token punctuation">:</span><span class="token comment" spellcheck="true">// --访问文件系统</span>
+php<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//  --访问各个输入/输出流</span>
+zlib<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//  --压缩流</span>
+data<span class="token punctuation">:</span><span class="token comment" spellcheck="true">// --数据</span>
+phar<span class="token punctuation">:</span><span class="token comment" spellcheck="true">// --PHP归档</span></code></pre>
+<h2 id="各个协议的使用"><a href="#各个协议的使用" class="headerlink" title="各个协议的使用"></a>各个协议的使用</h2><h3 id="1-file-—访问本地文件系统"><a href="#1-file-—访问本地文件系统" class="headerlink" title="1.file://    —访问本地文件系统"></a><code>1.file://</code>    —访问本地文件系统</h3><p><strong>用法：</strong></p>
+<pre class=" language-html"><code class="language-html">/path/to/file.ext
+relative/path/to/file.ext
+fileInCwd.ext
+C:/path/to/winfile.ext
+C:\path\to\winfile.ext
+\\smbserver\share\path\to\winfile.ext
+file:///path/to/file.ext</code></pre>
+<p><strong>利用</strong></p>
+<p><code>fopen(string $filename，$mode)</code>–将filename指定的名字资源绑定到一个流上，用于打开文件或者URL,成功时返回文件指针资源，打开失败，返回false.</p>
+<p><code>file_get_contents(string $filename)</code>–将整个文件读入一个字符串，成功时返回读取到的数据，失败返回false.</p>
+<p><code>file(string $filename)</code> –将整个文件读入一个数组</p>
+<pre class=" language-php"><code class="language-php"><span class="token number">1</span><span class="token punctuation">.</span><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/test.php?f=file:///var/www/html/1.php  --造成php文件执行</span>
+<span class="token number">2</span><span class="token punctuation">.</span><span class="token function">fopen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">fgets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/test.php?f=file:///var/www/html/1.php --读取的内容一般在注释</span>
+<span class="token number">3</span><span class="token punctuation">.</span><span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/test.php?f=file:///var/www/html/1.php  --读取内容一般在注释里</span>
+<span class="token number">4</span><span class="token punctuation">.</span><span class="token function">file</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/test.php?f=file:///var/www/html/1.php  --读取内容一般在注释里</span></code></pre>
+<h3 id="2-php"><a href="#2-php" class="headerlink" title="2.php://"></a><code>2.php://</code></h3><pre class=" language-php"><code class="language-php"><span class="token number">1</span><span class="token punctuation">.</span><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>php<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//input +POST_Data    --执行POST_Data命令 </span>
+<span class="token number">2</span><span class="token punctuation">.</span><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>php<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//filter/read=convert.base64.encode/[任选]/resource=1.php  --作用类似与file_get_contents()/file()</span></code></pre>
+<h3 id="3-zlib-bzip2-zip-，phar-–压缩流"><a href="#3-zlib-bzip2-zip-，phar-–压缩流" class="headerlink" title="3.zlib://,bzip2://,zip://，phar:// –压缩流"></a><code>3.zlib://,bzip2://,zip://，phar://</code> –压缩流</h3><p>用法：</p>
+<pre class=" language-php"><code class="language-php">compress<span class="token punctuation">.</span>zlib<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//file.gz</span>
+compress<span class="token punctuation">.</span>bzip2<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//file.bz2</span>
+zip<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//archive.zip#dir/file.txt  --zip://压缩文件绝对路径#压缩文件内文件名</span></code></pre>
+<p>实例：</p>
+<pre class=" language-php"><code class="language-php"><span class="token number">1</span><span class="token punctuation">.</span><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/test.php?f=compress.zlib:///var/www/html/1.zip</span>
+<span class="token number">2</span><span class="token punctuation">.</span><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/test.php?f=zip:///var/www/html/1.zip%231.php</span>
+<span class="token number">3</span><span class="token punctuation">.</span><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/test.php?f=compress.bzip2:///var/www/html/1.zip</span>
+<span class="token number">4</span><span class="token punctuation">.</span><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/t1.php?f=phar:///var/www/html/1.zip/1.php</span></code></pre>
+<h3 id="4-data"><a href="#4-data" class="headerlink" title="4.data://"></a><code>4.data://</code></h3><p>用法：</p>
+<pre class=" language-php"><code class="language-php">data<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//text/plain;base64,</span>
+<span class="token number">1</span><span class="token punctuation">.</span>打印“I love <span class="token constant">PHP</span>”
+<span class="token keyword">echo</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span>'data<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//text/plain;base64,SSBsb3ZlIFBIUAo=');</span>
+<span class="token number">2</span><span class="token punctuation">.</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/test.php?f=data://text/plain,&lt;?php%20phpinfo()?></span>
+<span class="token number">3</span><span class="token punctuation">.</span>http<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//127.0.0.1/test.php?f=data://text/plain;base64,PD9waHAgcGhwaW5mbygpPz4=</span></code></pre>
+<h1 id="have-a-bad-day"><a href="#have-a-bad-day" class="headerlink" title="have a bad day?"></a>have a bad day?</h1><h2 id="解题步骤："><a href="#解题步骤：" class="headerlink" title="解题步骤："></a>解题步骤：</h2><p>打开题目，在目录扫描，F12，查看<code>robots.txt</code>均无果，之后，发现点击每个按钮，后面<code>category</code>参数有变化，加个<code>‘</code>，看看可能是sql注入不。</p>
+<p><img src="/../images/2020-11-28_08-21.png" alt=""></p>
+<p>发现了<code>include()</code>,文件包含，而且从<code>category=woofers</code>和报错来看，是在<code>category</code>参数+<code>.php</code>进行的文件包含，所以我尝试看看<code>index.php</code>，于是<code>category=index</code></p>
+<p><img src="/../images/2020-11-28_08-27.png" alt=""></p>
+<p>看来不能直接进行读取，提示说只支持<code>woofers和meowers</code>，所以想着结合php伪协议将它们两个包含进去看看能不能绕过，<code>php://filter/read=convert.base64-encode|woofers/resource=index</code>,读取成功，解码得到<code>index.php</code></p>
+<pre class=" language-php"><code class="language-php">              <span class="token delimiter">&lt;?php</span>
+                <span class="token variable">$file</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'category'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token function">strpos</span><span class="token punctuation">(</span> <span class="token variable">$file</span><span class="token punctuation">,</span> <span class="token string">"woofers"</span> <span class="token punctuation">)</span> <span class="token operator">!==</span>  <span class="token boolean">false</span> <span class="token operator">||</span> <span class="token function">strpos</span><span class="token punctuation">(</span> <span class="token variable">$file</span><span class="token punctuation">,</span> <span class="token string">"meowers"</span> <span class="token punctuation">)</span> <span class="token operator">!==</span>  <span class="token boolean">false</span> <span class="token operator">||</span> <span class="token function">strpos</span><span class="token punctuation">(</span> <span class="token variable">$file</span><span class="token punctuation">,</span> <span class="token string">"index"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                        <span class="token keyword">include</span> <span class="token punctuation">(</span><span class="token variable">$file</span> <span class="token punctuation">.</span> <span class="token string">'.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token comment" spellcheck="true">//这里出现了一个strpos(string $s1,string $s2)函数的漏洞:</span>
+                    <span class="token comment" spellcheck="true">//该函数返回$s2在$s1中首次出现的位置，如果不存在则返回false，但是如果从头就匹配上了，就会返回0,这就是为啥刚才category=index会返回soory的原因。</span>
+                    <span class="token keyword">else</span><span class="token punctuation">{</span>
+                        <span class="token keyword">echo</span> <span class="token string">"Sorry, we currently only support woofers and meowers."</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+                <span class="token delimiter">?></span>    </code></pre>
+<p>最后读取<code>flag.php</code>拿到flag。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -501,7 +490,7 @@ s<span class="token operator">=</span><span class="token string">"0e"</span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://henuhub.com/2020/11/26/article3/">http://henuhub.com/2020/11/26/article3/</a>
+                    <a href="http://henuhub.com/2020/11/27/article4/">http://henuhub.com/2020/11/27/article4/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -539,8 +528,8 @@ s<span class="token operator">=</span><span class="token string">"0e"</span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/BUUCTF/">
-                                    <span class="chip bg-color">BUUCTF</span>
+                                <a href="/tags/php/">
+                                    <span class="chip bg-color">php</span>
                                 </a>
                             
                         </div>
@@ -711,7 +700,7 @@ s<span class="token operator">=</span><span class="token string">"0e"</span>
         repo: 'kelis-cpu.github.io',
         owner: 'kelis-cpu',
         admin: "kelis-cpu",
-        id: '2020-11-26T20-23-39',
+        id: '2020-11-27T23-47-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -735,9 +724,10 @@ s<span class="token operator">=</span><span class="token string">"0e"</span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/11/27/article4/">
                     <div class="card-image">
@@ -757,9 +747,9 @@ s<span class="token operator">=</span><span class="token string">"0e"</span>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -772,6 +762,7 @@ s<span class="token operator">=</span><span class="token string">"0e"</span>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -790,29 +781,29 @@ s<span class="token operator">=</span><span class="token string">"0e"</span>
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/24/article2/">
+                <a href="/2020/11/26/article3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="easy_web">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="朴实无华">
                         
-                        <span class="card-title">easy_web</span>
+                        <span class="card-title">朴实无华</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            easy_web原理1.md5强碰撞
-2.rce
-3.文件包含
-解题步骤打开题目直接F12
+                            朴实无华原理1.代码审计
+2.弱类型转换
+3.命令执行及常见绕过方式
+解题过程打开题目页面说无法确认更多头部信息，直接F12查看一下头部信息，未发现有价值的东西，
 
-可以看到图片这里是base64编码，再看url中的img=TXpVek5UTTFNbVUzTURabE5qYz0，这一串看着也像base64编码，
+然后先扫描一下该网站，扫描什么也没有发现，再来看看robots.txt，发
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-26
                             </span>
                         <span class="publish-author">
                             

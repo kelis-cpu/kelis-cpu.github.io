@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://henuhub.com/"/>
-  <updated>2020-11-27T04:40:42.651Z</updated>
+  <updated>2020-11-28T13:42:18.079Z</updated>
   <id>http://henuhub.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>php伪协议与文件包含</title>
+    <link href="http://henuhub.com/2020/11/27/article4/"/>
+    <id>http://henuhub.com/2020/11/27/article4/</id>
+    <published>2020-11-28T04:47:00.000Z</published>
+    <updated>2020-11-28T13:42:18.079Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;与文件包含相关函数&quot;&gt;&lt;a href=&quot;#与文件包含相关函数&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="php伪协议" scheme="http://henuhub.com/categories/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/"/>
+    
+    
+      <category term="php" scheme="http://henuhub.com/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title>朴实无华</title>
