@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Nmap</title>
+      <link href="/2020/11/29/article5/"/>
+      <url>/2020/11/29/article5/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h1><p>Nmap是一个网络连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断哪个操作系统计算机运行。</p><pre class=" language-bash"><code class="language-bash">1.nmap简单扫描nmap <span class="token operator">&lt;</span>target ip address<span class="token operator">></span>root@kali:~<span class="token comment" spellcheck="true"># nmap 10.16.93.136</span>PORT    STATE SERVICE21/tcp  <span class="token function">open</span>  <span class="token function">ftp</span>25/tcp  <span class="token function">open</span>  smtp80/tcp  <span class="token function">open</span>  http110/tcp <span class="token function">open</span>  pop3135/tcp <span class="token function">open</span>  msrpc139/tcp <span class="token function">open</span>  netbios-ssn445/tcp <span class="token function">open</span>  microsoft-ds888/tcp <span class="token function">open</span>  accessbuilder扫描出开放的端口2.nmap简单扫描，并对结果返回详细的描述输出nmap -vv <span class="token operator">&lt;</span>target ip address<span class="token operator">></span>3.nmap自定义扫描nmap -p<span class="token punctuation">(</span>range<span class="token punctuation">)</span><span class="token operator">&lt;</span>target ip<span class="token operator">></span> //range定义扫描的端口范围nmap -p20-120 ip/nmap -p80,100 ip4.nmap ping扫描nmap -sP <span class="token operator">&lt;</span>target IP<span class="token operator">></span>5.nmap 路由跟踪nmap -traceroute <span class="token operator">&lt;</span>target IP<span class="token operator">></span> 6.nmap扫描一个网段nmap -sP <span class="token operator">&lt;</span>network address<span class="token operator">></span><span class="token operator">&lt;</span>/CIDR<span class="token operator">></span>7.nmap操作系统类型探测nmap -O <span class="token operator">&lt;</span>target IP<span class="token operator">></span>8.nmap万能扫描，包含了1-10000端口ping扫描，操作系统扫描，路由跟踪，服务探测nmap -A <span class="token operator">&lt;</span>target IP<span class="token operator">></span>9.nmap从指定文件获取ip扫描结果定向输出nmap -iL filepath/filename1 -oN/-oX/-oG filename2nmap -iL /flag -oN 1.txt</code></pre><p><a href="https://www.lstazl.com/nmap%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/" target="_blank" rel="noopener">详细nmap使用方法</a></p><h2 id="利用nmap进行文件读取"><a href="#利用nmap进行文件读取" class="headerlink" title="利用nmap进行文件读取"></a>利用nmap进行文件读取</h2><p><code>-iL</code>从<code>inputfilename</code>文件中读取扫描的目标。在这个文件中要有一个主机或者网络列表，由空格，制表键，回车键作为分割符。如果使用该参数，nmap就会从标准输入stdin读取主机名字。</p><p><code>-oN</code>把扫描结果重定向到一个可读的文件logfilename中。</p><pre class=" language-bash"><code class="language-bash">nmap -iL /inputfilename -oN logfilename假如根目录下有一个inputfilename，那么使用上面命令就将读取inputfilename结果写到当前目录下的logfilename中。</code></pre><p><img src="/../images/2020-11-29_09-53.png" alt=""></p><p><img src="/../images/2020-11-29_09-53_1.png" alt=""></p><p>由上述测试结果可知，如果在某脚本文件中使用<code>system()</code>等函数来执行命令，可能会造成已知文件读取。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Nmap </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>php伪协议与文件包含</title>
       <link href="/2020/11/27/article4/"/>
       <url>/2020/11/27/article4/</url>

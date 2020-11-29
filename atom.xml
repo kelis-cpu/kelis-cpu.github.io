@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://henuhub.com/"/>
-  <updated>2020-11-28T13:42:18.079Z</updated>
+  <updated>2020-11-29T15:00:50.459Z</updated>
   <id>http://henuhub.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nmap</title>
+    <link href="http://henuhub.com/2020/11/29/article5/"/>
+    <id>http://henuhub.com/2020/11/29/article5/</id>
+    <published>2020-11-29T12:50:50.000Z</published>
+    <updated>2020-11-29T15:00:50.459Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Nmap&quot;&gt;&lt;a href=&quot;#Nmap&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://henuhub.com/categories/CTF/"/>
+    
+    
+      <category term="Nmap" scheme="http://henuhub.com/tags/Nmap/"/>
+    
+  </entry>
   
   <entry>
     <title>php伪协议与文件包含</title>
