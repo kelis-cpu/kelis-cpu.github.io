@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://henuhub.com/"/>
-  <updated>2020-11-29T15:00:50.459Z</updated>
+  <updated>2020-11-30T04:25:21.469Z</updated>
   <id>http://henuhub.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>phpweb</title>
+    <link href="http://henuhub.com/2020/11/29/article6/"/>
+    <id>http://henuhub.com/2020/11/29/article6/</id>
+    <published>2020-11-30T02:48:54.000Z</published>
+    <updated>2020-11-30T04:25:21.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h1&gt;&lt;p&gt;1.&lt;code&gt;call_user_func()&lt;/code&gt;RCE&lt;/p&gt;
+&lt;p&gt;2.命令空间绕过&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://henuhub.com/categories/CTF/"/>
+    
+    
+      <category term="BUUCTF" scheme="http://henuhub.com/tags/BUUCTF/"/>
+    
+  </entry>
   
   <entry>
     <title>Nmap</title>
