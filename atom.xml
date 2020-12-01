@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://henuhub.com/"/>
-  <updated>2020-11-30T04:25:21.469Z</updated>
+  <updated>2020-12-01T02:51:12.876Z</updated>
   <id>http://henuhub.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>堆叠注入</title>
+    <link href="http://henuhub.com/2020/11/30/article7/"/>
+    <id>http://henuhub.com/2020/11/30/article7/</id>
+    <published>2020-11-30T14:48:03.000Z</published>
+    <updated>2020-12-01T02:51:12.876Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;堆叠注入的产生&quot;&gt;&lt;a href=&quot;#堆叠注入的产生&quot; class=&quot;headerlink&quot; title=&quot;堆叠注入的产生&quot;&gt;&lt;/a&gt;堆叠注入的产生&lt;/h1&gt;&lt;p&gt;&lt;code&gt;mysqli_multi_query(mysqli $link,string
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://henuhub.com/categories/CTF/"/>
+    
+    
+      <category term="SQL注入" scheme="http://henuhub.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>phpweb</title>

