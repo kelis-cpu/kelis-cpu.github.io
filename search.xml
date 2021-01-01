@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>网络安全技术</title>
+      <link href="/2020/12/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/"/>
+      <url>/2020/12/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/</url>
+      
+        <content type="html"><![CDATA[<h1 id="选择题要点"><a href="#选择题要点" class="headerlink" title="选择题要点"></a>选择题要点</h1><h2 id="何为网络安全"><a href="#何为网络安全" class="headerlink" title="何为网络安全"></a>何为网络安全</h2><p>网络安全包括两大方面：网络系统安全、网络信息（数据）安全</p><p>网络信息安全五大特征：保密性、完整性、可用性、可审查性、可控性</p><h2 id="网络安全主要涉及内容"><a href="#网络安全主要涉及内容" class="headerlink" title="网络安全主要涉及内容"></a>网络安全主要涉及内容</h2><p>实体安全、系统安全、运行安全、应用安全、管理安全</p><h2 id="黑客常用的攻击手段"><a href="#黑客常用的攻击手段" class="headerlink" title="黑客常用的攻击手段"></a>黑客常用的攻击手段</h2><p>缓冲区溢出、拒绝服务攻击、非授权访问、字典攻击、网络监听、端口扫描、木马、病毒、蠕虫</p><h2 id="HTTPS工作原理"><a href="#HTTPS工作原理" class="headerlink" title="HTTPS工作原理"></a>HTTPS工作原理</h2><p>S指的是SSL/TLS，SSL标准主要提供三种服务：数据加密服务、认证服务和数据完整性服务。（采用对称加密技术与公钥加密技术）</p><h2 id="对称-非对称密钥"><a href="#对称-非对称密钥" class="headerlink" title="对称/非对称密钥"></a>对称/非对称密钥</h2><p>加、解密密钥是否相同</p><h2 id="网络安全保障的四个方面"><a href="#网络安全保障的四个方面" class="headerlink" title="网络安全保障的四个方面"></a>网络安全保障的四个方面</h2><p>网络安全策略、网络安全管理、网络安全运作、网络安全技术</p><h2 id="网络加密常用方法"><a href="#网络加密常用方法" class="headerlink" title="网络加密常用方法"></a>网络加密常用方法</h2><p>1.数据传输加密：链路加密、端到端加密、节点加密</p><p>2.数据存储加密：利用系统本身的加密功能加密、通过密钥加密、密码加密法</p><h2 id="网络安全管理规范"><a href="#网络安全管理规范" class="headerlink" title="网络安全管理规范"></a>网络安全管理规范</h2><p>？？？</p><h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>能够较好地阻止外网基于IP包头的攻击和非信任地址的访问，却无法阻止基于数据内容的黑客攻击和病毒入侵，也无法阻止内网之间的攻击行为。</p><h2 id="常见网络管理命令"><a href="#常见网络管理命令" class="headerlink" title="常见网络管理命令"></a>常见网络管理命令</h2><p>1.ping</p><p>主要功能是通过发送INternet控制报文协议ICMP包，检验与另一台TCP/IP主机的IP级联通情况。</p><p>2.ipconfig</p><p>主要功能是显示所有TCP/IP网络配置信息、刷新动态主机配置协议/DHCP和DNS设置。</p><p>3.net</p><p>查看计算机上的用户列表，添加和删除用户，与对方计算机建立连接、以及启动或者停止某网络服务等。</p><p>4.netstat</p><p>显示活动的连接、计算机监听的端口、以太网统计信息、IP路由表和IPv4统计信息。</p><h2 id="凯撒加密"><a href="#凯撒加密" class="headerlink" title="凯撒加密"></a>凯撒加密</h2><p>原理：代换技术—明文元素被其他元素所替代从而形成密文。</p><p>过程：c=（p+k）mod26—–p=（c-k）mod26</p><h2 id="IP地址欺诈"><a href="#IP地址欺诈" class="headerlink" title="IP地址欺诈"></a>IP地址欺诈</h2><p>IP路由欺骗，如果发送方进行了源路由欺骗，比如说，C进行源路由欺骗，伪装成B的ip地址，给服务器A发送了一个包，此时A收到包后发现要返回信息，正常的话因为发送地址栏是B，应该返回给B，但是由于源路由信息记录了来时的路线，反推回去就把应该给B的信息给了C，而A没有意识到问题，B对此一无所知，C拿到了B才能拿到的信息。</p><h2 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h2><p>完全备份+增量备份</p><p>数据备份技术：数据备份、撰写日志</p><h2 id="如何进行系统恢复"><a href="#如何进行系统恢复" class="headerlink" title="如何进行系统恢复"></a>如何进行系统恢复</h2><p>断开网络—》备份—》入侵分析</p><h2 id="嗅探器"><a href="#嗅探器" class="headerlink" title="嗅探器"></a>嗅探器</h2><p>wireshark的使用</p><h2 id="计算机病毒特征"><a href="#计算机病毒特征" class="headerlink" title="计算机病毒特征"></a>计算机病毒特征</h2><p>传播性、隐蔽性、潜伏性、触发及控制性、影响破坏性、多态及不可预见性</p><h1 id="简答分析"><a href="#简答分析" class="headerlink" title="简答分析"></a>简答分析</h1><h2 id="黑客攻击的五个过程"><a href="#黑客攻击的五个过程" class="headerlink" title="黑客攻击的五个过程"></a>黑客攻击的五个过程</h2><p>隐藏IP–》踩点扫描–》获得控制权–》种植后门–》隐身退出（清除登录及其他系统日志）</p><h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><p>1.实现技术</p><p>隧道技术、加解密技术、密钥管理技术、身份认证技术</p><p>2.特点</p><p>安全性高、费用低廉、管理便利、灵活性强、服务质量佳</p><h2 id="网络中不同层的安全–尤其底层（物理层）"><a href="#网络中不同层的安全–尤其底层（物理层）" class="headerlink" title="网络中不同层的安全–尤其底层（物理层）"></a>网络中不同层的安全–尤其底层（物理层）</h2><p>1.物理安全</p><p>是指保护网络设备、设施及其他媒介免遭地震、水灾、火灾、有害气体或其他环境石斛破坏的措施及过程。</p><p>物理隔离要求：</p><p>隔离内外网络传导、隔离内外网络辐射、隔离不同存储环境。</p><p>物理隔离技术的三个阶段：</p><p>彻底物理隔离、协议隔离、网闸隔离技术</p><p>2.系统安全</p><p>包括网络系统安全、操作系统安全和数据库系统安全。主要以网络系统的特点、条件和管理要求为依据，通过有针对性地为系统提供安全策略机制、保障措施、应急修复方法、安全要求和管理规范等，确保整个网络安全。</p><p>3.运行安全</p><p>包括网络系统的运行安全和访问控制安全，如用防火墙进行内外网隔离、访问控制和系统恢复。运行安全包括：内外网隔离，应急处置机制和配套服务、网络系统安全性监测、网络安全产品运行监测、定期检查和评估、系统升级和补丁处理、跟踪最新安全漏洞、灾难恢复机制与预防、安全审计、系统改造以及网络安全咨询等。</p><p>4.应用安全</p><p>由应用软件平台安全和应用数据安全组成。应用安全包括：业务应用软件的程序安全性测试分析、业务数据的安全检测与审计、数据资源访问控制验证测试、实体身份鉴别检测、业务数据备份与恢复机制检查、数据唯一性或一致性、防冲突检测、数据保密测试。</p><p>5.管理安全</p><p>主要指对人员、网络系统和应用与服务等要素的安全管理，涉及各种法律，法规。。。技术手段和措施等内容。</p><h2 id="防火墙-1"><a href="#防火墙-1" class="headerlink" title="防火墙"></a>防火墙</h2><p>1.概念</p><p>是位于多个网络之间，通过执行访问控制策略保护网络安全的系统。</p><p>2.位置</p><p>网络之间、内外网之间、即网络的边界</p><p>3.功能</p><p>建立一个集中的监视点;隔绝内外网，保护内部网络;强化网络安全策略;有效记录和审计内外网络之间的活动。</p><p>4.缺点</p><p>防火墙无法防范不经由防火墙的攻击;</p><p>是一种被动安全策略执行设备;</p><p>不能防止利用标准网络协议中的缺陷进行的攻击;</p><p>不能防止服务器系统漏洞/数据驱动式的攻击;</p><p>无法保证准许服务的安全性;</p><p>不能防止本身的安全漏洞威胁;</p><p>不能防止感染了病毒的软件或文件的传输</p><p>5.如何使用防火墙防御SYN Flood攻击</p><p>a.包过滤型防火墙</p><p>起过滤和转发作用，工作于IP层或IP层之下。</p><p>b.应用代理型防火墙</p><p>客户端要与服务端建立TCP连接的三次握手过程，它位于客户端和服务器端中间，充当代理角色，先是客户端到防火墙的三次握手，再是防火墙到服务端的三次握手，所有报文都是有防火墙转发，起到了一种隔离保护作用，安全性高</p><p>c.SYN网关、被动式SYN网关、SYN中继</p><h2 id="计算机病毒危害"><a href="#计算机病毒危害" class="headerlink" title="计算机病毒危害"></a>计算机病毒危害</h2><p>破坏系统、文件和数据</p><p>窃取机密文件和信息</p><p>造成网络堵塞或瘫痪</p><p>消耗内存，存盘空间和系统资源</p><p>计算机运行缓慢</p><p>对用户造成心理压力</p><p>常见病毒：熊猫烧香病毒（可执行文件出现熊猫烧香图案，计算机蓝屏、重复重启、硬盘数据遭破坏，还可以通过网络传播，感染网络内所有计算机系统，造成不同程度的局域网和互联网瘫痪）、冰河木马、特洛伊木马、蠕虫病毒</p><h2 id="拖库撞库"><a href="#拖库撞库" class="headerlink" title="拖库撞库"></a>拖库撞库</h2><p>1.拖库</p><p>指黑客入侵有价值的网络站点，把注册用户的资料数据库全部盗走的行为。</p><p>2.撞库</p><p>黑客用拖库得到的数据或者网络上已经泄露的用户名、密码等信息，在其他网站上进行尝试登录的行为。</p><h2 id="5G安全-？？？"><a href="#5G安全-？？？" class="headerlink" title="5G安全   ？？？"></a>5G安全   ？？？</h2><h1 id="应用题"><a href="#应用题" class="headerlink" title="应用题"></a>应用题</h1><h2 id="数字签名过程（SHA-1-RSA）"><a href="#数字签名过程（SHA-1-RSA）" class="headerlink" title="数字签名过程（SHA-1+RSA）"></a>数字签名过程（SHA-1+RSA）</h2><p>若Alice向Bob发送消息，创建签名</p><p>1）ALice用SHA-1算法计算原消息的散列值</p><p>2）Alice用私钥对该散列值使用RSA算法得到签名，并将该签名附在原消息后面</p><p>验签：</p><p>1）将接受到消息中原消息及其数字签名分离出来</p><p>2）利用SHA-1算法计算原消息散列值</p><p>3）使用ALice公钥验证该散列值的数值签名，证明该数字签名的合法性。</p><h2 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h2><p>公钥（e，n），私钥（d，n）</p><hr><p>两素数p，q，n=p×q，φ（n）=（p-1）×（q-1）</p><p>求私钥：e×d≡1modφ（n）</p><p>加密：c=m^e mod n,解密：m=c^d mod n</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 复习要点 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 期末考试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RFC1071</title>
+      <link href="/2020/12/07/article8/"/>
+      <url>/2020/12/07/article8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="中文版RFC1071"><a href="#中文版RFC1071" class="headerlink" title="中文版RFC1071"></a>中文版RFC1071</h1><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网际校验和算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>堆叠注入</title>
       <link href="/2020/11/30/article7/"/>
       <url>/2020/11/30/article7/</url>
