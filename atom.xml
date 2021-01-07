@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://henuhub.com/"/>
-  <updated>2021-01-02T15:12:42.371Z</updated>
+  <updated>2021-01-07T12:23:02.205Z</updated>
   <id>http://henuhub.com/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>软件工程</title>
+    <link href="http://henuhub.com/2021/01/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    <id>http://henuhub.com/2021/01/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</id>
+    <published>2021-01-06T13:39:47.000Z</published>
+    <updated>2021-01-07T12:23:02.205Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;软件工程概述&quot;&gt;&lt;a href=&quot;#软件工程概述&quot; class=&quot;headerlink&quot; title=&quot;软件工程概述&quot;&gt;&lt;/a&gt;软件工程概述&lt;/h1&gt;&lt;h1 id=&quot;第一讲-软件工程概述&quot;&gt;&lt;a href=&quot;#第一讲-软件工程概述&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="复习要点" scheme="http://henuhub.com/categories/%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9/"/>
+    
+    
+      <category term="期末考试" scheme="http://henuhub.com/tags/%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>网络安全技术</title>
     <link href="http://henuhub.com/2020/12/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/"/>
     <id>http://henuhub.com/2020/12/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/</id>
     <published>2021-01-01T01:22:42.000Z</published>
-    <updated>2021-01-02T15:12:42.371Z</updated>
+    <updated>2021-01-07T12:22:53.860Z</updated>
     
     <summary type="html">
     
